@@ -159,7 +159,7 @@ public class VisitorsMacro {
 
         if (TablistUtils.getTabList().stream().noneMatch(line -> StringUtils.stripControlCodes(line).contains("Queue Full!"))) {
             LogUtils.debugLog("Queue is not full, waiting...");
-            clock.schedule(1000);
+            clock.schedule(5000);
             return;
         }
 
@@ -172,13 +172,13 @@ public class VisitorsMacro {
 
         // Change it so it can check for a block under the player
 
-        BlockPos blockUnder = BlockUtils.getRelativeBlockPos(0, 0, 0);
-        if (!BlockUtils.canSetSpawn(blockUnder)) {
-            LogUtils.debugLog("Can't setspawn here, still going.");
-            clock.schedule(1000);
-            enabled = false;
-            return;
-        }
+        //BlockPos blockUnder = BlockUtils.getRelativeBlockPos(0, 0, 0);
+        //if (!BlockUtils.canSetSpawn(blockUnder)) {
+            //LogUtils.debugLog("Can't setspawn here, still going.");
+            //clock.schedule(1000);
+            //enabled = false;
+            //return;
+        //}
 
         int aspectOfTheVoid = PlayerUtils.getItemInHotbar("Aspect of the Void");
         if (aspectOfTheVoid == -1) {
@@ -234,7 +234,6 @@ public class VisitorsMacro {
             rotation.reset();
             waitAfterTpClock.reset();
             boughtAllItems = false;
-            visitorsFinished.clear();
             itemsToBuy.clear();
             itemToBuy = null;
             currentVisitor = null;
